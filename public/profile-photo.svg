@@ -1,0 +1,17 @@
+<svg width="800" height="960" viewBox="0 0 800 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="960" rx="48" fill="#0F1724"/>
+  <rect x="36" y="36" width="728" height="888" rx="30" fill="#121C2B" stroke="#334155"/>
+  <rect x="76" y="76" width="648" height="70" rx="18" fill="#0B1220" stroke="#334155"/>
+  <circle cx="120" cy="111" r="10" fill="#FF5F57"/>
+  <circle cx="154" cy="111" r="10" fill="#FEBC2E"/>
+  <circle cx="188" cy="111" r="10" fill="#28C840"/>
+  <rect x="228" y="94" width="250" height="34" rx="10" fill="#172554"/>
+  <rect x="96" y="182" width="608" height="640" rx="28" fill="#0B1220" stroke="#334155"/>
+  <circle cx="400" cy="360" r="118" fill="#1E293B"/>
+  <circle cx="400" cy="332" r="64" fill="#7AB7FF"/>
+  <path d="M265 621C265 546.442 325.442 486 400 486C474.558 486 535 546.442 535 621V694H265V621Z" fill="#7AB7FF"/>
+  <rect x="140" y="746" width="520" height="18" rx="9" fill="#1E293B"/>
+  <rect x="140" y="782" width="388" height="18" rx="9" fill="#1E293B"/>
+  <rect x="140" y="818" width="438" height="18" rx="9" fill="#1E293B"/>
+  <text x="112" y="905" fill="#86E29A" font-family="JetBrains Mono, monospace" font-size="30">drop your real photo into /public/profile-photo.jpg</text>
+</svg>

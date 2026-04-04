@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0f14;
+  --panel: rgba(14, 20, 29, 0.92);
+  --panel-soft: rgba(17, 24, 35, 0.92);
+  --panel-elevated: rgba(23, 31, 45, 0.92);
+  --panel-border: rgba(94, 117, 145, 0.28);
+  --panel-shadow: 0 30px 80px rgba(4, 8, 13, 0.45);
+  --text-primary: #ecf3ff;
+  --text-secondary: #96a7be;
+  --text-muted: #6d7f98;
+  --accent: #7ab7ff;
+  --accent-soft: rgba(122, 183, 255, 0.12);
+  --accent-secondary: #86e29a;
+  --grid: rgba(124, 147, 173, 0.08);
+}
+
+:root[data-theme='light'] {
+  --bg: #eef3f8;
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-soft: rgba(247, 250, 253, 0.96);
+  --panel-elevated: rgba(239, 245, 251, 0.98);
+  --panel-border: rgba(116, 135, 160, 0.22);
+  --panel-shadow: 0 24px 60px rgba(44, 67, 92, 0.12);
+  --text-primary: #0f1724;
+  --text-secondary: #4b5d74;
+  --text-muted: #718299;
+  --accent: #1565d8;
+  --accent-soft: rgba(21, 101, 216, 0.09);
+  --accent-secondary: #127c55;
+  --grid: rgba(116, 135, 160, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  background:
+    radial-gradient(circle at top, rgba(26, 56, 92, 0.42), transparent 38%),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--bg);
+  background-size: auto, 28px 28px, 28px 28px, auto;
+  color: var(--text-primary);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+.editor-scroll,
+.terminal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--panel-border) transparent;
+}
+
+.editor-scroll::-webkit-scrollbar,
+.terminal-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.editor-scroll::-webkit-scrollbar-thumb,
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background: var(--panel-border);
+  border-radius: 999px;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
