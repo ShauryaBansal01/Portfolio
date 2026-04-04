@@ -25,8 +25,8 @@ export const initialTerminalMessages: TerminalMessage[] = [
 ]
 
 export const profile: Profile = {
-  name: 'Your Name',
-  handle: 'yourname@workspace',
+  name: 'Shaurya',
+  handle: 'shaurya@workspace',
   role: 'Full Stack Developer',
   headline:
     'I build developer-friendly products with clean UI, useful tooling, and interfaces that feel like real working systems.',
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     impact:
       'Built as a product that combines approachable design with practical problem solving around communication.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
-    repoUrl: 'https://github.com/yourname/lingobridge',
+    repoUrl: 'https://github.com/shaurya/lingobridge',
     highlights: [
       'Designed a user-friendly interface for language-focused workflows.',
       'Structured the app to keep learning flows simple and easy to navigate.',
@@ -97,7 +97,7 @@ export const projects: Project[] = [
       'Turns career discovery into a more guided and less overwhelming product experience.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase'],
     liveUrl: 'https://career-lens-vert.vercel.app/',
-    repoUrl: 'https://github.com/yourname/careerlens',
+    repoUrl: 'https://github.com/shaurya/careerlens',
     highlights: [
       'Organized complex information into a cleaner exploration flow.',
       'Focused on clarity, usability, and guiding the user toward decisions.',
@@ -123,7 +123,7 @@ export const projects: Project[] = [
     impact:
       'Shows my interest in building calmer digital experiences with a personal and human-centered feel.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    repoUrl: 'https://github.com/yourname/mind-mirror',
+    repoUrl: 'https://github.com/shaurya/mind-mirror',
     highlights: [
       'Created an interface that feels personal without becoming visually noisy.',
       'Balanced interaction and minimalism for a thoughtful product mood.',
@@ -246,5 +246,5 @@ export const contactLinks: ContactLinks = {
   email: 'shauryabansal2005@gmail.com',
   github: 'https://github.com/ShauryaBansal01',
   linkedin: 'https://www.linkedin.com/in/shauryabansal70/',
-  resume: 'https://example.com/yourname-resume.pdf',
+  resume: 'https://example.com/shaurya-resume.pdf',
 }
