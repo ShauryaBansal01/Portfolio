@@ -12,8 +12,8 @@ export function AboutView({ onFocusTerminal }: AboutViewProps) {
     <div className="space-y-4">
       <div className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-4">
-          <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] p-5 sm:p-6">
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--accent)]">Overview</p>
+          <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] backdrop-blur-md p-5 sm:p-6 shadow-sm">
+            <p className="text-xs uppercase tracking-[0.24em] font-medium text-[var(--accent)]">Overview</p>
             <div className="mt-4 space-y-4">
               <div>
                 <p className="text-sm text-[var(--text-secondary)]">{profile.role}</p>
@@ -68,17 +68,17 @@ export function AboutView({ onFocusTerminal }: AboutViewProps) {
             </div>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-2">
+              <div className="grid gap-4 lg:grid-cols-2">
             <InfoPanel
               title="GitHub Presence"
-              accent="text-[var(--accent)]"
+              accent="text-[var(--accent)] font-medium"
               body={profile.githubSummary}
               ctaLabel="View GitHub"
               ctaUrl={contactLinks.github}
             />
             <InfoPanel
               title="LinkedIn Presence"
-              accent="text-[var(--accent-secondary)]"
+              accent="text-[var(--accent-secondary)] font-medium"
               body={profile.linkedinSummary}
               ctaLabel="Open LinkedIn"
               ctaUrl={contactLinks.linkedin}
@@ -90,26 +90,26 @@ export function AboutView({ onFocusTerminal }: AboutViewProps) {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] p-5 sm:p-6">
-          <p className="text-xs uppercase tracking-[0.24em] text-[var(--text-muted)]">Stats</p>
+        <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] backdrop-blur-md p-5 sm:p-6 shadow-sm">
+          <p className="text-xs uppercase tracking-[0.24em] font-medium text-[var(--text-muted)]">Stats</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {stats.map((stat) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-2xl border border-[var(--panel-border)] bg-[var(--panel-soft)] p-4"
+                className="rounded-2xl border border-[var(--panel-border)] bg-[var(--panel-soft)] shadow-inner p-4"
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">{stat.label}</p>
+                <p className="text-xs uppercase font-semibold tracking-[0.2em] text-[var(--text-muted)]">{stat.label}</p>
                 <p className="mt-3 text-xl font-semibold text-[var(--text-primary)]">{stat.value}</p>
               </motion.div>
             ))}
           </div>
         </div>
 
-        <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] p-5 sm:p-6">
-          <p className="text-xs uppercase tracking-[0.24em] text-[var(--text-muted)]">Operating Principles</p>
-          <div className="mt-4 rounded-2xl border border-[var(--panel-border)] bg-[var(--panel-soft)] p-4">
+        <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] backdrop-blur-md p-5 sm:p-6 shadow-sm">
+          <p className="text-xs uppercase tracking-[0.24em] font-medium text-[var(--text-muted)]">Operating Principles</p>
+          <div className="mt-4 rounded-2xl border border-[var(--panel-border)] bg-[var(--panel-soft)] shadow-inner p-4">
             <pre className="overflow-x-auto whitespace-pre-wrap text-sm leading-7 text-[var(--text-secondary)]">
 {`const identity = {
   style: 'developer first',
@@ -147,7 +147,7 @@ function InfoPanel({
   accent: string
 }) {
   return (
-    <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] p-5 sm:p-6">
+    <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] backdrop-blur-md p-5 sm:p-6 shadow-sm">
       <p className={`text-xs uppercase tracking-[0.24em] ${accent}`}>{title}</p>
       <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">{body}</p>
       <a

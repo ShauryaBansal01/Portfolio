@@ -234,7 +234,7 @@ function App() {
     <MotionConfig transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}>
       <div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)]">
         <div className="mx-auto flex min-h-screen max-w-[1640px] flex-col p-3 sm:p-4 lg:p-6">
-          <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[24px] border border-[var(--panel-border)] bg-[var(--panel)] shadow-[var(--panel-shadow)]">
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[24px] border border-[var(--panel-border)] bg-[var(--panel)] backdrop-blur-xl shadow-[var(--panel-shadow)]">
             <WorkspaceHeader
               activeFileLabel={activeFileMeta.label}
               theme={theme}

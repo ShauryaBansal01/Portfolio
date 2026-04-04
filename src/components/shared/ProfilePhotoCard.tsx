@@ -6,9 +6,9 @@ export function ProfilePhotoCard() {
   const [imageBroken, setImageBroken] = useState(false)
 
   return (
-    <div className="flex h-full flex-col rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] p-5 sm:p-6">
-      <p className="text-xs uppercase tracking-[0.24em] text-[var(--accent)]">Profile Photo</p>
-      <div className="mt-4 flex-1 overflow-hidden rounded-[20px] border border-[var(--panel-border)] bg-[var(--panel-soft)]">
+    <div className="flex h-full flex-col rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] backdrop-blur-md p-5 sm:p-6 shadow-sm">
+      <p className="text-xs uppercase tracking-[0.24em] font-medium text-[var(--accent)]">Profile Photo</p>
+      <div className="mt-4 flex-1 overflow-hidden rounded-[20px] border border-[var(--panel-border)] bg-[var(--panel-soft)] shadow-inner">
         {!imageBroken ? (
           <img
             src={profile.photoUrl}
