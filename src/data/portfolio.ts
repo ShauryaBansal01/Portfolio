@@ -9,6 +9,8 @@ import type {
   TerminalMessage,
 } from '../types/portfolio'
 
+import profilePhoto from '../assets/photo.jpeg'
+
 export const explorerFiles: ExplorerFile[] = [
   { id: 'about', label: 'about.md', note: 'intro, photo, github, linkedin' },
   { id: 'projects', label: 'projects.json', note: 'LingoBridge, CareerLens, Mind Mirror' },
@@ -31,13 +33,13 @@ export const profile: Profile = {
   summary:
     'This portfolio is designed like a coding environment because that is where I do my best work. I enjoy building practical products, thoughtful user experiences, and tools that help people move faster with confidence.',
   location: 'India',
-  availability: 'Open to software engineering, frontend, and full stack roles',
-  photoUrl: '/profile-photo.svg',
+  availability: 'Open to software engineering, frontend, backend and full stack roles',
+  photoUrl: profilePhoto,
   githubSummary:
-    'My GitHub reflects how I think: practical project structure, readable commits, TypeScript-heavy work, and products built to be maintained rather than just demoed.',
+    'My GitHub reflects how I think: practical project structure, readable commits, JavaScript-heavy work, and products built to be maintained rather than just demoed.',
   linkedinSummary:
     'LinkedIn is where I share my journey, connect with recruiters and engineers, and give a clearer professional view beyond code alone.',
-  focus: ['Frontend Engineering', 'Developer Tooling', 'Full Stack Apps'],
+  focus: ['Frontend Engineering', 'Backend Engineering', 'Developer Tooling', 'Full Stack Apps'],
   principles: [
     'Build interfaces that explain themselves.',
     'Prefer maintainable systems over clever complexity.',
@@ -52,7 +54,7 @@ export const profile: Profile = {
 
 export const stats: PortfolioStat[] = [
   { label: 'Core Projects', value: '3' },
-  { label: 'Primary Stack', value: 'React + TS' },
+  { label: 'Primary Stack', value: 'React + JS' },
   { label: 'Profile Style', value: 'Code First' },
   { label: 'Current Goal', value: 'Impactful Roles' },
 ]
@@ -68,7 +70,6 @@ export const projects: Project[] = [
     impact:
       'Built as a product that combines approachable design with practical problem solving around communication.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
-    liveUrl: 'https://example.com/lingobridge',
     repoUrl: 'https://github.com/yourname/lingobridge',
     highlights: [
       'Designed a user-friendly interface for language-focused workflows.',
@@ -95,7 +96,7 @@ export const projects: Project[] = [
     impact:
       'Turns career discovery into a more guided and less overwhelming product experience.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase'],
-    liveUrl: 'https://example.com/careerlens',
+    liveUrl: 'https://career-lens-vert.vercel.app/',
     repoUrl: 'https://github.com/yourname/careerlens',
     highlights: [
       'Organized complex information into a cleaner exploration flow.',
@@ -122,7 +123,6 @@ export const projects: Project[] = [
     impact:
       'Shows my interest in building calmer digital experiences with a personal and human-centered feel.',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    liveUrl: 'https://example.com/mind-mirror',
     repoUrl: 'https://github.com/yourname/mind-mirror',
     highlights: [
       'Created an interface that feels personal without becoming visually noisy.',
@@ -243,8 +243,8 @@ export const dependencyGraph = [
 ]
 
 export const contactLinks: ContactLinks = {
-  email: 'hello@yourname.dev',
-  github: 'https://github.com/yourname',
-  linkedin: 'https://www.linkedin.com/in/yourname',
+  email: 'shauryabansal2005@gmail.com',
+  github: 'https://github.com/ShauryaBansal01',
+  linkedin: 'https://www.linkedin.com/in/shauryabansal70/',
   resume: 'https://example.com/yourname-resume.pdf',
 }

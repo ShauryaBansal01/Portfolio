@@ -29,7 +29,7 @@ export type Project = {
   summary: string
   impact: string
   stack: string[]
-  liveUrl: string
+  liveUrl?: string
   repoUrl: string
   highlights: string[]
   snippet: string

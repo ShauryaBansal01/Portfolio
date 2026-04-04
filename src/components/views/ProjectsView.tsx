@@ -58,15 +58,17 @@ export function ProjectsView({ selectedProjectId, onSelectProject }: ProjectsVie
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href={selectedProject.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--panel-border)] bg-[var(--panel-soft)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:border-[var(--accent)]"
-              >
-                Live Preview
-                <ExternalLink className="size-4" />
-              </a>
+              {selectedProject.liveUrl && (
+                <a
+                  href={selectedProject.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-[var(--panel-border)] bg-[var(--panel-soft)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:border-[var(--accent)]"
+                >
+                  Live Preview
+                  <ExternalLink className="size-4" />
+                </a>
+              )}
               <a
                 href={selectedProject.repoUrl}
                 target="_blank"

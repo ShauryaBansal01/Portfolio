@@ -6,18 +6,18 @@ export function ProfilePhotoCard() {
   const [imageBroken, setImageBroken] = useState(false)
 
   return (
-    <div className="rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] p-5 sm:p-6">
+    <div className="flex h-full flex-col rounded-[22px] border border-[var(--panel-border)] bg-[var(--panel)] p-5 sm:p-6">
       <p className="text-xs uppercase tracking-[0.24em] text-[var(--accent)]">Profile Photo</p>
-      <div className="mt-4 overflow-hidden rounded-[20px] border border-[var(--panel-border)] bg-[var(--panel-soft)]">
+      <div className="mt-4 flex-1 overflow-hidden rounded-[20px] border border-[var(--panel-border)] bg-[var(--panel-soft)]">
         {!imageBroken ? (
           <img
             src={profile.photoUrl}
             alt={`${profile.name} profile`}
-            className="h-[320px] w-full object-cover object-center"
+            className="h-full w-full object-cover object-center"
             onError={() => setImageBroken(true)}
           />
         ) : (
-          <div className="flex h-[320px] flex-col items-center justify-center gap-3 bg-[linear-gradient(135deg,rgba(21,33,48,0.9),rgba(12,18,29,0.96))] text-center text-[var(--text-secondary)]">
+          <div className="flex h-full flex-col items-center justify-center gap-3 bg-[linear-gradient(135deg,rgba(21,33,48,0.9),rgba(12,18,29,0.96))] p-4 text-center text-[var(--text-secondary)]">
             <div className="rounded-2xl border border-[var(--panel-border)] bg-[var(--panel)] p-4 text-[var(--accent)]">
               <ImageOff className="size-8" />
             </div>
