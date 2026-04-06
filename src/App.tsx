@@ -88,15 +88,11 @@ function Navbar({
   theme,
   onToggleTheme,
   onSearchClick,
-  copiedEmail,
-  onCopyEmail,
 }: {
   active: Section
   theme: string
   onToggleTheme: () => void
   onSearchClick: () => void
-  copiedEmail: boolean
-  onCopyEmail: () => void
 }) {
   const sections: { id: Section; label: string }[] = [
     { id: 'about', label: 'about' },
@@ -180,12 +176,10 @@ function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
       id="hero"
       className="min-h-screen flex flex-col items-center justify-center px-6 text-center pt-20 pb-10"
     >
-      {/* Label */}
       <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '0.14em', marginBottom: '1.5rem' }}>
         // developer.profile
       </p>
 
-      {/* Headline */}
       <h1
         className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight"
         style={{ fontFamily: 'var(--font-sans)', maxWidth: '900px', color: 'var(--text)' }}
@@ -201,7 +195,6 @@ function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
         with clean UI, useful tooling, and interfaces that feel like real working systems.
       </p>
 
-      {/* Terminal block */}
       <div
         className="mt-10 w-full text-left"
         style={{
@@ -213,13 +206,11 @@ function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
           boxShadow: '0 0 30px rgba(70,241,197,0.08)',
         }}
       >
-        {/* titlebar */}
         <div className="ide-titlebar">
           <MacDots />
           <span className="ide-filename">portfolio.sh — zsh</span>
           <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--text-muted)' }}>©2026</span>
         </div>
-        {/* lines */}
         <div className="p-5 space-y-3">
           {lines.map((line, i) => (
             <div key={i}>
@@ -240,7 +231,6 @@ function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
               )}
             </div>
           ))}
-          {/* active prompt */}
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem' }}>
             <span style={{ color: 'var(--cyan)' }}>visitor@portfolio:~$</span>
             <span className="terminal-cursor" />
@@ -248,14 +238,12 @@ function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
         </div>
       </div>
 
-      {/* CTAs */}
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <a href="#projects" className="btn-term">[ ./view-projects ]</a>
         <a href={contactLinks.github} target="_blank" rel="noreferrer" className="btn-term">[ ./open-github ]</a>
         <a href={`mailto:${contactLinks.email}`} className="btn-term">[ ./contact-me ]</a>
       </div>
 
-      {/* scroll cue */}
       <button type="button" onClick={onScrollDown} className="mt-12 flex flex-col items-center gap-2" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}>
         <span style={{ fontSize: '0.7rem', fontFamily: 'var(--font-mono)', letterSpacing: '0.1em' }}>scroll</span>
         <ChevronDown className="size-4 animate-bounce" style={{ color: 'var(--cyan)' }} />
@@ -300,13 +288,12 @@ function AboutSection() {
                 <a href={contactLinks.linkedin} target="_blank" rel="noreferrer" className="btn-term">
                   [ linkedin ]<ArrowUpRight className="size-4" />
                 </a>
-                <a href="#hero" className="btn-term" onClick={(e) => { e.preventDefault(); document.querySelector('#hero input')?.focus() }}>
+                <a href="#hero" className="btn-term" onClick={(e) => { e.preventDefault(); document.querySelector<HTMLInputElement>('#hero-input')?.focus() }}>
                   <Terminal className="size-4" />[ terminal ]
                 </a>
               </div>
             </div>
 
-            {/* Stats */}
             <div className="mt-6 grid grid-cols-2 gap-3">
               {stats.map((s) => (
                 <div
@@ -326,7 +313,6 @@ function AboutSection() {
           </IdeWindow>
         </FadeUp>
 
-        {/* Operating principles */}
         <FadeUp delay={0.12}>
           <IdeWindow filename="identity.ts">
             <div className="code-block text-xs">
@@ -382,7 +368,6 @@ function ProjectsSection() {
           <SectionLabel index="02" name="projects" />
         </FadeUp>
 
-        {/* Project tabs */}
         <FadeUp delay={0.05}>
           <div className="flex gap-2 overflow-x-auto pb-2 mb-6">
             {projects.map((p) => (
@@ -413,7 +398,6 @@ function ProjectsSection() {
             exit={{ opacity: 0, y: -10 }}
             className="grid lg:grid-cols-[1fr_1.05fr] gap-6"
           >
-            {/* Info panel */}
             <IdeWindow filename={project.file}>
               <div>
                 <p style={{ fontSize: '0.65rem', color: 'var(--cyan)', letterSpacing: '0.14em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', marginBottom: 10 }}>
@@ -452,7 +436,6 @@ function ProjectsSection() {
               </div>
             </IdeWindow>
 
-            {/* Code panel */}
             <IdeWindow filename={project.file}>
               <div className="code-block text-xs flex-1 overflow-auto">
                 {project.snippet.split('\n').map((line, i) => (
@@ -574,7 +557,6 @@ function SkillsSection() {
         </FadeUp>
 
         <div ref={ref} className="grid lg:grid-cols-[1fr_0.9fr] gap-6">
-          {/* Skill bars */}
           <FadeUp delay={0.05}>
             <IdeWindow filename="capability-graph.ts">
               <div className="space-y-6">
@@ -605,7 +587,6 @@ function SkillsSection() {
           </FadeUp>
 
           <div className="space-y-4">
-            {/* Dependency graph */}
             <FadeUp delay={0.1}>
               <IdeWindow filename="dependency-graph.ts">
                 <div className="code-block text-xs">
@@ -627,7 +608,6 @@ function SkillsSection() {
               </IdeWindow>
             </FadeUp>
 
-            {/* What teams get */}
             <FadeUp delay={0.15}>
               <IdeWindow filename="team-value.md">
                 <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.14em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', marginBottom: 12 }}>
@@ -883,8 +863,6 @@ export default function App() {
         theme={theme}
         onToggleTheme={toggleTheme}
         onSearchClick={() => setPaletteOpen(true)}
-        copiedEmail={copiedEmail}
-        onCopyEmail={() => void copyEmail()}
       />
 
       <HeroSection onScrollDown={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })} />
