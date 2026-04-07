@@ -10,8 +10,72 @@ export function AboutSection() {
         <SectionLabel index="01" name="about" />
       </FadeUp>
 
-      <div className="grid lg:grid-cols-[1fr_0.7fr] gap-6">
-        <FadeUp delay={0.05}>
+      <div className="grid lg:grid-cols-12 gap-6">
+        <FadeUp delay={0.02} className="lg:col-span-3 h-full">
+          <IdeWindow filename="sys_id_badge.exe">
+            <div className="flex flex-col h-full bg-[var(--surface-lo)] relative overflow-hidden h-full">
+              
+              {/* Photo Area */}
+              <div className="relative w-full aspect-[4/5] border-b border-[var(--border)] overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-[var(--cyan)] shadow-[var(--cyan-glow)] animate-[gridMove_3s_linear_infinite] z-20 pointer-events-none" />
+                <img 
+                  src={profile.photoUrl} 
+                  alt="Identity" 
+                  className="w-full h-full object-cover filter grayscale contrast-125 sepia-[0.3] hue-rotate-[180deg] opacity-80 group-hover:opacity-100 transition-duration-500" 
+                />
+                <div className="absolute inset-0 bg-[var(--cyan)] opacity-10 mix-blend-overlay pointer-events-none" />
+                
+                {/* Tech Corners */}
+                <div className="absolute top-2 left-2 size-2 border-t border-l border-[var(--cyan)] pointer-events-none" />
+                <div className="absolute top-2 right-2 size-2 border-t border-r border-[var(--cyan)] pointer-events-none" />
+                <div className="absolute bottom-2 left-2 size-2 border-b border-l border-[var(--cyan)] pointer-events-none" />
+                <div className="absolute bottom-2 right-2 size-2 border-b border-r border-[var(--cyan)] pointer-events-none" />
+              </div>
+
+              {/* Data Area */}
+              <div className="p-4 flex flex-col flex-1 justify-between">
+                <div>
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <p style={{ fontSize: '0.65rem', color: 'var(--cyan)', fontFamily: 'var(--font-mono)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '4px' }}>
+                        // ID_ACTIVE
+                      </p>
+                      <h3 className="text-lg font-bold tracking-tight" style={{ color: 'var(--text)', fontFamily: 'var(--font-sans)', lineHeight: 1.2 }}>
+                        {profile.name}
+                      </h3>
+                    </div>
+                    <div className="px-1.5 py-0.5 bg-[var(--cyan-soft)] border border-[var(--cyan)] rounded-sm">
+                      <p style={{ fontSize: '0.6rem', color: 'var(--cyan)', fontFamily: 'var(--font-mono)', fontWeight: 'bold' }}>A1</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5 mt-4">
+                    <div className="flex justify-between items-center" style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                      <span>CLASS</span>
+                      <span style={{ color: 'var(--text-dim)', textAlign: 'right' }}>{profile.role.split(' ')[0]}</span>
+                    </div>
+                    <div className="flex justify-between items-center" style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                      <span>CLEARANCE</span>
+                      <span style={{ color: 'var(--text-dim)', textAlign: 'right' }}>TOP_SECRET</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-5 border-t border-[var(--border)] pt-3">
+                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '20px', letterSpacing: '-1px', color: 'var(--cyan)', opacity: 0.4, width: '100%', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                     ||||| ||| | || ||||| | ||
+                   </div>
+                   <p style={{ fontSize: '0.5rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', letterSpacing: '0.2em', marginTop: '6px', textAlign: 'center' }}>
+                     SERIAL_88-X001-GHOST
+                   </p>
+                </div>
+              </div>
+
+            </div>
+          </IdeWindow>
+        </FadeUp>
+
+        <FadeUp delay={0.05} className="lg:col-span-5">
           <IdeWindow filename="about.md">
             <div>
               <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginBottom: 12, letterSpacing: '0.12em' }}>
@@ -66,7 +130,7 @@ export function AboutSection() {
           </IdeWindow>
         </FadeUp>
 
-        <FadeUp delay={0.12}>
+        <FadeUp delay={0.12} className="lg:col-span-4">
           <IdeWindow filename="identity.ts">
             <div className="code-block text-xs">
               <span className="tok-kw">const </span>

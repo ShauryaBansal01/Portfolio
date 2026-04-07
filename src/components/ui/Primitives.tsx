@@ -36,13 +36,13 @@ export function Chip({ label }: { label: string }) {
   return <span className="chip">[{label}]</span>
 }
 
-export function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+export function FadeUp({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const visible = useInView(ref)
   return (
     <div
       ref={ref}
-      className="anim-fade-up"
+      className={`anim-fade-up ${className}`}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(20px)',
