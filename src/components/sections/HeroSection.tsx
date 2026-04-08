@@ -148,8 +148,8 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
           </div>
         </motion.div>
 
-        {/* ── RIGHT COLUMN — 3D CODER SCENE ── */}
         <motion.div
+          className="hero-right-col"
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
@@ -158,7 +158,6 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
             justifyContent: 'center',
             alignItems: 'center',
             position: 'relative',
-            paddingLeft: '50px',
           }}
         >
           {/* Outer glow halo */}
@@ -187,9 +186,20 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
 
       {/* Responsive: stack on mobile */}
       <style>{`
+        .hero-right-col {
+          padding-left: 50px;
+        }
         @media (max-width: 860px) {
+          #hero {
+            padding: 80px 24px 40px !important;
+          }
           .hero-grid {
             grid-template-columns: 1fr !important;
+            gap: 32px !important;
+            text-align: left;
+          }
+          .hero-right-col {
+            padding-left: 0 !important;
           }
         }
       `}</style>
