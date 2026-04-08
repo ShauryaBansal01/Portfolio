@@ -29,7 +29,7 @@ export const profile: Profile = {
   handle: 'shaurya@workspace',
   role: 'Full Stack Developer',
   headline:
-    'I build developer-friendly products with clean UI, useful tooling, and interfaces that feel like real working systems.',
+    'I build user-friendly products with clean UI, useful tooling, and interfaces that feel like real working systems.',
   summary:
     'This portfolio is designed like a coding environment because that is where I do my best work. I enjoy building practical products, thoughtful user experiences, and tools that help people move faster with confidence.',
   location: 'India',

@@ -33,7 +33,7 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
         style={{ fontFamily: 'var(--font-sans)', maxWidth: '900px', color: 'var(--text)' }}
       >
         I build{' '}
-        <span className="glow-text glitch-effect">developer-friendly</span>
+        <span className="glow-text glitch-effect">user-friendly</span>
         {' '}products
       </h1>
       <p

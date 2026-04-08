@@ -79,7 +79,7 @@
 
 .glitch-effect::before,
 .glitch-effect::after {
-  content: "developer-friendly";
+  content: "user-friendly";
   position: absolute;
   top: 0;
   left: 0;

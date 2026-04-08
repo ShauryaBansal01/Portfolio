@@ -14,17 +14,17 @@ export function AboutSection() {
         <FadeUp delay={0.02} className="lg:col-span-3 h-full">
           <IdeWindow filename="sys_id_badge.exe">
             <div className="flex flex-col h-full bg-[var(--surface-lo)] relative overflow-hidden h-full">
-              
+
               {/* Photo Area */}
               <div className="relative w-full aspect-[4/5] border-b border-[var(--border)] overflow-hidden group">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-[var(--cyan)] shadow-[var(--cyan-glow)] animate-[gridMove_3s_linear_infinite] z-20 pointer-events-none" />
-                <img 
-                  src={profile.photoUrl} 
-                  alt="Identity" 
-                  className="w-full h-full object-cover filter grayscale contrast-125 sepia-[0.3] hue-rotate-[180deg] opacity-80 group-hover:opacity-100 transition-duration-500" 
+                <img
+                  src={profile.photoUrl}
+                  alt="Identity"
+                  className="w-full h-full object-cover filter grayscale contrast-125 sepia-[0.3] hue-rotate-[180deg] opacity-80 group-hover:opacity-100 transition-duration-500"
                 />
                 <div className="absolute inset-0 bg-[var(--cyan)] opacity-10 mix-blend-overlay pointer-events-none" />
-                
+
                 {/* Tech Corners */}
                 <div className="absolute top-2 left-2 size-2 border-t border-l border-[var(--cyan)] pointer-events-none" />
                 <div className="absolute top-2 right-2 size-2 border-t border-r border-[var(--cyan)] pointer-events-none" />
@@ -62,12 +62,12 @@ export function AboutSection() {
                 </div>
 
                 <div className="mt-5 border-t border-[var(--border)] pt-3">
-                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '20px', letterSpacing: '-1px', color: 'var(--cyan)', opacity: 0.4, width: '100%', overflow: 'hidden', whiteSpace: 'nowrap' }}>
-                     ||||| ||| | || ||||| | ||
-                   </div>
-                   <p style={{ fontSize: '0.5rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', letterSpacing: '0.2em', marginTop: '6px', textAlign: 'center' }}>
-                     SERIAL_88-X001-GHOST
-                   </p>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '20px', letterSpacing: '-1px', color: 'var(--cyan)', opacity: 0.4, width: '100%', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                    ||||| ||| | || ||||| | ||
+                  </div>
+                  <p style={{ fontSize: '0.5rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', letterSpacing: '0.2em', marginTop: '6px', textAlign: 'center' }}>
+                    SERIAL_88-X001-GHOST
+                  </p>
                 </div>
               </div>
 
@@ -137,7 +137,7 @@ export function AboutSection() {
               <span className="tok-nm">identity</span>
               <span className="tok-op"> = </span>
               <span className="tok-op">{'{'}</span>{'\n'}
-              {'  '}<span className="tok-nm">style</span><span className="tok-op">: </span><span className="tok-str">'developer first'</span><span className="tok-op">,</span>{'\n'}
+              {'  '}<span className="tok-nm">style</span><span className="tok-op">: </span><span className="tok-str">'user first'</span><span className="tok-op">,</span>{'\n'}
               {'  '}<span className="tok-nm">product</span><span className="tok-op">: </span><span className="tok-str">'clear and useful'</span><span className="tok-op">,</span>{'\n'}
               {'  '}<span className="tok-nm">code</span><span className="tok-op">: </span><span className="tok-str">'modular + maintainable'</span><span className="tok-op">,</span>{'\n'}
               {'  '}<span className="tok-nm">goal</span><span className="tok-op">: </span><span className="tok-str">'build work that is easy to trust'</span>{'\n'}
