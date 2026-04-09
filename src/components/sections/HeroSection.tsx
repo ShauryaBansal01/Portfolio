@@ -4,21 +4,72 @@ import { ChevronDown } from 'lucide-react'
 import { contactLinks, profile } from '../../data/portfolio'
 import { MacDots } from '../ui/Primitives'
 import { CoderScene3D } from '../ui/CoderScene3D'
+import { TicTacToe } from '../ui/TicTacToe'
+
+type TerminalLine = {
+  prompt: string;
+  cmd: string;
+  out: React.ReactNode;
+}
 
 export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
   const [typed, setTyped] = useState(0)
-  const lines = [
+  const defaultHistory: TerminalLine[] = [
     { prompt: 'visitor@portfolio:~$', cmd: ' whoami', out: `→ ${profile.name} · ${profile.role} · ${profile.location}` },
     { prompt: 'visitor@portfolio:~$', cmd: ' cat stack.json', out: '→ React · JavaScript · Node.js · Tailwind CSS' },
     { prompt: 'visitor@portfolio:~$', cmd: ' git log --oneline', out: '→ Streamify · CareerLens · Mind Mirror' },
   ]
 
+  const [history, setHistory] = useState<TerminalLine[]>(defaultHistory)
+  const [inputVal, setInputVal] = useState('')
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (typed < lines.length) setTyped((t) => t + 1)
+      if (typed < 3) setTyped((t) => t + 1)
     }, 700)
     return () => clearTimeout(timer)
-  }, [typed, lines.length])
+  }, [typed])
+
+  const handleCommand = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const cmd = inputVal.trim()
+      let out: React.ReactNode = ''
+      const lowerCmd = cmd.toLowerCase()
+      
+      if (lowerCmd === 'help') {
+        out = '→ Available commands: whoami, cat stack.json, git log --oneline, clear, clr, ls, date, sudo, play tictactoe'
+      } else if (lowerCmd === 'clear') {
+        setHistory([])
+        setInputVal('')
+        return
+      } else if (lowerCmd === 'clr') {
+        setHistory(defaultHistory)
+        setInputVal('')
+        return
+      } else if (lowerCmd === 'whoami') {
+        out = `→ ${profile.name} · ${profile.role} · ${profile.location}`
+      } else if (lowerCmd === 'cat stack.json') {
+        out = '→ React · JavaScript · Node.js · Tailwind CSS'
+      } else if (lowerCmd === 'git log --oneline') {
+        out = '→ Streamify · CareerLens · Mind Mirror'
+      } else if (lowerCmd === 'ls') {
+        out = '→ projects/  resume.pdf  about.md  stack.json'
+      } else if (lowerCmd === 'date') {
+        out = `→ ${new Date().toString()}`
+      } else if (lowerCmd.startsWith('sudo ')) {
+        out = <span style={{ color: 'var(--red)' }}>→ visitor is not in the sudoers file. This incident will be reported.</span>
+      } else if (lowerCmd === 'play tictactoe') {
+        out = <TicTacToe />
+      } else if (cmd === '') {
+        out = ''
+      } else {
+        out = `→ command not found: ${cmd.split(' ')[0]}. Type 'help' for available commands.`
+      }
+      
+      setHistory(prev => [...prev, { prompt: 'visitor@portfolio:~$', cmd: ' ' + cmd, out }])
+      setInputVal('')
+    }
+  }
 
   return (
     <section
@@ -112,10 +163,10 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
               <span className="ide-filename">portfolio.sh — zsh</span>
               <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--text-muted)' }}>©2026</span>
             </div>
-            <div className="p-5 space-y-3">
-              {lines.map((line, i) => (
+            <div className="p-5 space-y-3" style={{ maxHeight: '250px', overflowY: 'auto' }}>
+              {history.map((line, i) => (
                 <div key={i}>
-                  {i < typed && (
+                  {(i < typed || i >= 3) ? (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -125,17 +176,44 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
                         <span style={{ color: 'var(--cyan)' }}>{line.prompt}</span>
                         <span style={{ color: 'var(--text)' }}>{line.cmd}</span>
                       </div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-dim)' }}>
-                        {line.out}
-                      </div>
+                      {line.out && (
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-dim)' }}>
+                          {line.out}
+                        </div>
+                      )}
                     </motion.div>
-                  )}
+                  ) : null}
                 </div>
               ))}
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
-                <span style={{ color: 'var(--cyan)' }}>visitor@portfolio:~$</span>
-                <span className="terminal-cursor" />
-              </div>
+              {typed < 3 && (
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
+                  <span style={{ color: 'var(--cyan)' }}>visitor@portfolio:~$</span>
+                  <span className="terminal-cursor" />
+                </div>
+              )}
+              {typed >= 3 && (
+                <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
+                  <span style={{ color: 'var(--cyan)', whiteSpace: 'nowrap', marginRight: '6px' }}>visitor@portfolio:~$</span>
+                  <input
+                    type="text"
+                    value={inputVal}
+                    onChange={(e) => setInputVal(e.target.value)}
+                    onKeyDown={handleCommand}
+                    placeholder="Type 'help' to see available commands..."
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: 'var(--text)',
+                      fontFamily: 'inherit',
+                      fontSize: 'inherit',
+                      outline: 'none',
+                      width: '100%'
+                    }}
+                    spellCheck={false}
+                    autoComplete="off"
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -144,7 +222,6 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
             <a href="/resume.pdf" download className="btn-term glow-text">[ ./download-resume ]</a>
             <a href="#projects" className="btn-term">[ ./view-projects ]</a>
             <a href={contactLinks.github} target="_blank" rel="noreferrer" className="btn-term">[ ./open-github ]</a>
-            <a href={`mailto:${contactLinks.email}`} className="btn-term">[ ./contact-me ]</a>
           </div>
         </motion.div>
 
