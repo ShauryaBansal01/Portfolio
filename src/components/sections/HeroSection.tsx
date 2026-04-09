@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { contactLinks, profile } from '../../data/portfolio'
@@ -22,6 +22,8 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
 
   const [history, setHistory] = useState<TerminalLine[]>(defaultHistory)
   const [inputVal, setInputVal] = useState('')
+  const [isFocused, setIsFocused] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -163,7 +165,11 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
               <span className="ide-filename">portfolio.sh — zsh</span>
               <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--text-muted)' }}>©2026</span>
             </div>
-            <div className="p-5 space-y-3" style={{ maxHeight: '250px', overflowY: 'auto' }}>
+            <div 
+              className="p-5 space-y-3" 
+              style={{ maxHeight: '250px', overflowY: 'auto', cursor: 'text' }}
+              onClick={() => inputRef.current?.focus()}
+            >
               {history.map((line, i) => (
                 <div key={i}>
                   {(i < typed || i >= 3) ? (
@@ -192,22 +198,48 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
                 </div>
               )}
               {typed >= 3 && (
-                <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', position: 'relative' }}>
                   <span style={{ color: 'var(--cyan)', whiteSpace: 'nowrap', marginRight: '6px' }}>visitor@portfolio:~$</span>
+                  
+                  {/* Custom Input Display */}
+                  <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text)' }}>
+                    {!inputVal && !isFocused ? (
+                      <span style={{ color: 'var(--text-muted)', opacity: 0.7 }}>
+                        Type 'help' to see available commands...
+                      </span>
+                    ) : (
+                      <span style={{ whiteSpace: 'pre' }}>{inputVal}</span>
+                    )}
+                    {/* Retro Block Cursor */}
+                    {isFocused && (
+                      <span style={{
+                        display: 'inline-block',
+                        width: '8px',
+                        height: '14px',
+                        backgroundColor: 'var(--cyan)',
+                        marginLeft: inputVal ? '2px' : '0px',
+                        animation: 'blink 1.2s step-end infinite'
+                      }}></span>
+                    )}
+                  </div>
+
+                  {/* Hidden Real Input */}
                   <input
+                    ref={inputRef}
+                    autoFocus
                     type="text"
                     value={inputVal}
                     onChange={(e) => setInputVal(e.target.value)}
                     onKeyDown={handleCommand}
-                    placeholder="Type 'help' to see available commands..."
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
                     style={{
-                      background: 'transparent',
-                      border: 'none',
-                      color: 'var(--text)',
-                      fontFamily: 'inherit',
-                      fontSize: 'inherit',
-                      outline: 'none',
-                      width: '100%'
+                      position: 'absolute',
+                      inset: 0,
+                      opacity: 0,
+                      cursor: 'text',
+                      width: '100%',
+                      height: '100%',
                     }}
                     spellCheck={false}
                     autoComplete="off"
