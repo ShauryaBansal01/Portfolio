@@ -7,12 +7,11 @@ import { CommandPalette } from './components/layout/CommandPalette'
 import { HeroSection } from './components/sections/HeroSection'
 import { AboutSection } from './components/sections/AboutSection'
 import { ProjectsSection } from './components/sections/ProjectsSection'
-import { ExperienceSection } from './components/sections/ExperienceSection'
 import { SkillsSection } from './components/sections/SkillsSection'
 import { ContactSection } from './components/sections/ContactSection'
 import { BootSequence } from './components/ui/BootSequence'
 
-type Section = 'hero' | 'about' | 'projects' | 'experience' | 'skills' | 'contact'
+type Section = 'hero' | 'about' | 'projects' | 'skills' | 'contact'
 
 export default function App() {
   const [hasBooted, setHasBooted] = useState(false)
@@ -34,7 +33,7 @@ export default function App() {
 
   // Active section tracking
   useEffect(() => {
-    const sections = ['hero', 'about', 'projects', 'experience', 'skills', 'contact'] as Section[]
+    const sections = ['hero', 'about', 'projects', 'skills', 'contact'] as Section[]
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -87,8 +86,6 @@ export default function App() {
         <AboutSection />
         <div className="section-divider" />
         <ProjectsSection />
-        <div className="section-divider" />
-        <ExperienceSection />
         <div className="section-divider" />
         <SkillsSection />
         <div className="section-divider" />

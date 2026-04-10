@@ -1,11 +1,8 @@
-import { useRef } from 'react'
 import { skillDomains, dependencyGraph } from '../../data/portfolio'
-import { FadeUp, SectionLabel, useInView } from '../ui/Primitives'
+import { FadeUp, SectionLabel } from '../ui/Primitives'
 import { IdeWindow } from '../ui/IdeWindow'
 
 export function SkillsSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const visible = useInView(ref, 0.1)
 
   return (
     <section id="skills" className="px-6 py-32" style={{ background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
@@ -22,33 +19,16 @@ export function SkillsSection() {
           <SectionLabel index="04" name="skills" />
         </FadeUp>
 
-        <div ref={ref} className="grid lg:grid-cols-[1fr_0.9fr] gap-8 mt-12">
-          {/* Left Column: Capability Graph */}
+        <div className="grid lg:grid-cols-[1fr_0.9fr] gap-8 mt-12">
+          {/* Left Column: Skill Domains */}
           <FadeUp delay={0.05}>
-            <IdeWindow filename="sys.capability_graph">
+            <IdeWindow filename="sys.skill_domains">
               <div className="space-y-8 p-1">
-                {skillDomains.map((d, i) => (
+                {skillDomains.map((d) => (
                   <div key={d.id}>
-                    <div className="flex items-center justify-between mb-3">
-                      <div>
-                        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text)', fontWeight: 600, letterSpacing: '0.05em' }}>{d.name}</p>
-                        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.70rem', color: 'var(--text-muted)', marginTop: 4 }}>► {d.summary}</p>
-                      </div>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--cyan)', fontWeight: 700, textShadow: '0 0 10px rgba(0, 240, 255, 0.5)' }}>
-                        [{d.level}%]
-                      </span>
-                    </div>
-                    <div style={{ height: '6px', background: 'var(--surface-hi)', borderRadius: '2px', overflow: 'hidden', position: 'relative', border: '1px solid var(--border)' }}>
-                      <div
-                        style={{ 
-                          height: '100%', 
-                          background: 'var(--cyan)', 
-                          boxShadow: '0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.4)',
-                          width: visible ? `${d.level}%` : '0%', 
-                          transition: 'width 1.5s cubic-bezier(0.22, 1, 0.36, 1)',
-                          transitionDelay: `${i * 0.15}s` 
-                        }}
-                      />
+                    <div className="mb-3">
+                      <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text)', fontWeight: 600, letterSpacing: '0.05em' }}>{d.name}</p>
+                      <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.70rem', color: 'var(--text-muted)', marginTop: 4 }}>► {d.summary}</p>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-4">
                       {d.modules.map((m) => (

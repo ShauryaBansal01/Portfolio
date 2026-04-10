@@ -14,7 +14,6 @@ import profilePhoto from '../assets/photo.jpeg'
 export const explorerFiles: ExplorerFile[] = [
   { id: 'about', label: 'about.md', note: 'intro, photo, github, linkedin' },
   { id: 'projects', label: 'projects.json', note: 'Streamify, CareerLens, Mind Mirror' },
-  { id: 'experience', label: 'experience.log', note: 'journey, milestones, growth' },
   { id: 'skills', label: 'skills.ts', note: 'strengths, stack, dependencies' },
   { id: 'contact', label: 'contact.js', note: 'email, github, linkedin, resume' },
 ]
@@ -66,22 +65,22 @@ export const projects: Project[] = [
     file: 'apps/streamify.tsx',
     status: 'Featured Project',
     summary:
-      'A real-time video chat and communication platform enabling seamless, low-latency peer-to-peer streaming experiences.',
+      'A real-time video chat and communication platform built with the MERN stack, enabling high-quality video and audio calls between users.',
     impact:
-      'Built a robust real-time communication stack capable of handling high-quality video streams.',
-    stack: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Tailwind CSS', 'Stream API', 'TanStack Query', 'Daisy UI'],
+      'Built a full-stack communication platform with real-time video calling, friend management, and a responsive dark-mode UI.',
+    stack: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Tailwind CSS', 'GetStream', 'TanStack Query', 'Daisy UI'],
     repoUrl: 'https://github.com/ShauryaBansal01/Video-chat-realtime',
     highlights: [
-      'Integrated the Stream API for robust, low-latency video and audio transmission.',
+      'Integrated GetStream for reliable, real-time video and audio communication.',
       'Implemented a MERN stack architecture with TanStack Query for efficient server state management.',
       'Designed a highly responsive, accessible interface utilizing Tailwind CSS and Daisy UI.',
     ],
-    snippet: `export function VideoStream({ channel }: { channel: Channel }) {
+    snippet: `export function VideoCallRoom({ channel }: { channel: Channel }) {
   return (
     <article className="rounded-xl border border-slate-700 p-4">
       <h3>{channel.name}</h3>
       <div className="video-player-frame">
-        <StreamPlayer stream={channel.activeStream} />
+        <CallPlayer channel={channel} />
       </div>
       <button className="btn-join">Join Call</button>
     </article>
@@ -148,21 +147,6 @@ export function AnalyticsDashboard({ entries }: { entries: JournalEntry[] }) {
 
 export const experienceEntries: ExperienceEntry[] = [
   {
-    id: 'streamify-release',
-    year: '2026',
-    title: 'Streamify Development',
-    type: 'Project',
-    duration: '2026',
-    summary:
-      'Built a real-time video chat and communication platform enabling seamless, low-latency peer-to-peer streaming experiences.',
-    details: [
-      'Integrated the Stream API for robust, low-latency video and audio transmission.',
-      'Implemented a MERN stack architecture with TanStack Query for efficient server state management.',
-      'Designed a highly responsive, accessible interface utilizing Tailwind CSS and Daisy UI.',
-    ],
-    stack: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Tailwind CSS', 'Stream API', 'TanStack Query', 'Daisy UI'],
-  },
-  {
     id: 'careerlens-release',
     year: '2025',
     title: 'CareerLens Development',
@@ -198,35 +182,30 @@ export const skillDomains: SkillDomain[] = [
   {
     id: 'languages-frameworks',
     name: 'Languages & Frameworks',
-    level: 90,
     summary: 'Core programming languages and modern web frameworks for full-stack development.',
     modules: ['C++', 'JavaScript', 'React.js', 'Express.js', 'Node.js', 'Tailwind CSS'],
   },
   {
     id: 'cloud-databases',
     name: 'Cloud & Databases',
-    level: 85,
     summary: 'Database management and cloud services for robust backend architectures.',
     modules: ['MongoDB', 'Firebase', 'MySQL'],
   },
   {
     id: 'tools-libraries',
     name: 'Tools & Libraries',
-    level: 88,
     summary: 'Essential developer tools and libraries that streamline the development workflow.',
     modules: ['C++ STL', 'TanStack Query', 'VS Code', 'Git', 'GitHub', 'Postman', 'Vercel'],
   },
   {
     id: 'coursework',
     name: 'Core Coursework',
-    level: 92,
     summary: 'Strong foundation in computer science principles and software engineering concepts.',
     modules: ['Data Structures & Algorithms', 'Operating Systems', 'OOPs', 'DBMS', 'Computer Networks', 'Software Engineering'],
   },
   {
     id: 'soft-skills',
     name: 'Soft Skills',
-    level: 95,
     summary: 'Key interpersonal attributes for effective problem-solving and collaboration.',
     modules: ['Problem-solving', 'Communication', 'Adaptability', 'Willingness to Learn'],
   },

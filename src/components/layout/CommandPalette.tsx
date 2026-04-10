@@ -5,7 +5,7 @@ import { Search } from 'lucide-react'
 export function CommandPalette({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [q, setQ] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
-  const sections = ['about', 'projects', 'experience', 'skills', 'contact']
+  const sections = ['about', 'projects', 'skills', 'contact']
 
   useEffect(() => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 50)

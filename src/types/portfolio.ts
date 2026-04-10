@@ -1,6 +1,6 @@
 export type Theme = 'dark' | 'light'
 
-export type FileId = 'about' | 'projects' | 'experience' | 'skills' | 'contact'
+export type FileId = 'about' | 'projects' | 'skills' | 'contact'
 
 export type TerminalMessageKind = 'input' | 'output' | 'system'
 
@@ -49,7 +49,7 @@ export type ExperienceEntry = {
 export type SkillDomain = {
   id: string
   name: string
-  level: number
+  level?: number
   summary: string
   modules: string[]
 }

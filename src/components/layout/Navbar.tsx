@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react'
 
-type Section = 'hero' | 'about' | 'projects' | 'experience' | 'skills' | 'contact'
+type Section = 'hero' | 'about' | 'projects' | 'skills' | 'contact'
 
 export function Navbar({
   active,
@@ -12,7 +12,6 @@ export function Navbar({
   const sections: { id: Section; label: string }[] = [
     { id: 'about', label: 'about' },
     { id: 'projects', label: 'projects' },
-    { id: 'experience', label: 'exp' },
     { id: 'skills', label: 'skills' },
     { id: 'contact', label: 'contact' },
   ]

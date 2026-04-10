@@ -69,7 +69,7 @@ export function ProjectsSection() {
                     <p style={{ fontSize: '0.875rem', lineHeight: 1.8, color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', marginBottom: 24, paddingBottom: 24, borderBottom: '1px solid var(--border)' }}>
                       {project.summary}
                     </p>
-                    
+
                     <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.14em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', marginBottom: 12 }}>core_stack</p>
                     <div className="flex flex-wrap gap-2 mb-8">
                       {project.stack.map((t) => <Chip key={t} label={t} />)}
@@ -102,7 +102,7 @@ export function ProjectsSection() {
                       </div>
                     ))}
                   </div>
-                  
+
                   {/* Highlights section attached at the bottom of the code snippet */}
                   <div className="mt-6 pt-4" style={{ borderTop: '1px dashed var(--border)' }}>
                     <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.14em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', marginBottom: 8 }}>sys.highlights</p>
