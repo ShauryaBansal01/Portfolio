@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Terminal as TerminalIcon } from 'lucide-react'
 import { contactLinks, profile } from '../../data/portfolio'
 import { MacDots } from '../ui/Primitives'
 import { CoderScene3D } from '../ui/CoderScene3D'
 import { FlappyBird } from '../ui/FlappyBird'
+import { useDevice } from '../../hooks/useDevice'
 
 type TerminalLine = {
   prompt: string;
@@ -13,11 +14,12 @@ type TerminalLine = {
 }
 
 export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
+  const { isDesktop, isMobile } = useDevice()
   const [typed, setTyped] = useState(0)
   const defaultHistory: TerminalLine[] = [
-    { prompt: 'visitor@portfolio:~$', cmd: ' whoami', out: `→ ${profile.name} · ${profile.role} · ${profile.location}` },
-    { prompt: 'visitor@portfolio:~$', cmd: ' cat stack.json', out: '→ React · JavaScript · Node.js · Tailwind CSS' },
-    { prompt: 'visitor@portfolio:~$', cmd: ' git log --oneline', out: '→ Streamify · CareerLens · Mind Mirror' },
+    { prompt: 'visitor:~$', cmd: ' whoami', out: `→ ${profile.name} · ${profile.role}` },
+    { prompt: 'visitor:~$', cmd: ' cat stack.json', out: '→ React · Node.js · Tailwind' },
+    { prompt: 'visitor:~$', cmd: ' git log', out: '→ Streamify · CareerLens' },
   ]
 
   const [history, setHistory] = useState<TerminalLine[]>(defaultHistory)
@@ -37,9 +39,9 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
       const cmd = inputVal.trim()
       let out: React.ReactNode = ''
       const lowerCmd = cmd.toLowerCase()
-      
+
       if (lowerCmd === 'help') {
-        out = '→ Available commands: whoami, cat stack.json, git log --oneline, clear, clr, ls, date, sudo, play flappybird'
+        out = '→ Available commands: whoami, cat stack.json, git log, clear, clr, play flappybird'
       } else if (lowerCmd === 'clear') {
         setHistory([])
         setInputVal('')
@@ -49,17 +51,11 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
         setInputVal('')
         return
       } else if (lowerCmd === 'whoami') {
-        out = `→ ${profile.name} · ${profile.role} · ${profile.location}`
+        out = `→ ${profile.name} · ${profile.role}`
       } else if (lowerCmd === 'cat stack.json') {
-        out = '→ React · JavaScript · Node.js · Tailwind CSS'
-      } else if (lowerCmd === 'git log --oneline') {
-        out = '→ Streamify · CareerLens · Mind Mirror'
-      } else if (lowerCmd === 'ls') {
-        out = '→ projects/  resume.pdf  about.md  stack.json'
-      } else if (lowerCmd === 'date') {
-        out = `→ ${new Date().toString()}`
-      } else if (lowerCmd.startsWith('sudo ')) {
-        out = <span style={{ color: 'var(--red)' }}>→ visitor is not in the sudoers file. This incident will be reported.</span>
+        out = '→ React · Node.js · Tailwind CSS'
+      } else if (lowerCmd === 'git log') {
+        out = '→ Streamify · CareerLens'
       } else if (lowerCmd === 'play flappybird') {
         out = <FlappyBird />
       } else if (cmd === '') {
@@ -67,8 +63,8 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
       } else {
         out = `→ command not found: ${cmd.split(' ')[0]}. Type 'help' for available commands.`
       }
-      
-      setHistory(prev => [...prev, { prompt: 'visitor@portfolio:~$', cmd: ' ' + cmd, out }])
+
+      setHistory(prev => [...prev, { prompt: 'visitor:~$', cmd: ' ' + cmd, out }])
       setInputVal('')
     }
   }
@@ -76,12 +72,12 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
   return (
     <section
       id="hero"
+      className="responsive-section"
       style={{
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: '100px 48px 60px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -94,194 +90,213 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
         opacity: 0.18,
       }} />
 
-      {/* Two-column layout */}
+      {/* Grid container */}
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '48px',
-        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '40px',
         maxWidth: '1200px',
         margin: '0 auto',
         width: '100%',
         position: 'relative',
       }}
-        className="hero-grid"
+        className="hero-container"
       >
-        {/* ── LEFT COLUMN ── */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
-        >
-          {/* Label */}
-          <p style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.72rem',
-            color: 'var(--cyan)',
-            letterSpacing: '0.16em',
-            margin: 0,
-          }}>
-            // developer.profile
-          </p>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* ── LEFT COLUMN ── */}
+          <motion.div
+            initial={{ opacity: 0, y: isMobile ? 20 : 0, x: isDesktop ? -30 : 0 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
+          >
+            {/* Label */}
+            <p style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.72rem',
+              color: 'var(--cyan)',
+              letterSpacing: '0.16em',
+              margin: 0,
+            }}>
+              // developer.profile
+            </p>
 
-          {/* Headline */}
-          <h1 style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: 'clamp(2.4rem, 4vw, 3.6rem)',
-            fontWeight: 700,
-            lineHeight: 1.12,
-            letterSpacing: '-0.02em',
-            color: 'var(--text)',
-            margin: 0,
-          }}>
-            I build{' '}
-            <span className="glow-text glitch-effect">user-friendly</span>
-            {' '}products
-          </h1>
+            {/* Headline */}
+            <h1 className="fluid-h1" style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 700,
+              lineHeight: 1.12,
+              letterSpacing: '-0.02em',
+              color: 'var(--text)',
+              margin: 0,
+            }}>
+              I build{' '}
+              <span className="glow-text glitch-effect">user-friendly</span>
+              {' '}products
+            </h1>
 
-          {/* Subtitle */}
-          <p style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.875rem',
-            color: 'var(--text-muted)',
-            lineHeight: 1.75,
-            margin: 0,
-            maxWidth: '480px',
-          }}>
-            with clean UI, useful tooling, and interfaces that feel like real working systems.
-          </p>
+            {/* Subtitle */}
+            <p style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.875rem',
+              color: 'var(--text-dim)',
+              lineHeight: 1.75,
+              margin: 0,
+              maxWidth: '480px',
+            }}>
+              with clean UI, useful tooling, and interfaces that feel like real working systems.
+            </p>
 
-          {/* Terminal window */}
-          <div style={{
-            background: 'var(--surface)',
-            border: '1px solid var(--border-hover)',
-            borderRadius: '10px',
-            overflow: 'hidden',
-            boxShadow: 'var(--cyan-glow)',
-          }}>
-            <div className="ide-titlebar">
-              <MacDots />
-              <span className="ide-filename">portfolio.sh — zsh</span>
-              <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--text-muted)' }}>©2026</span>
-            </div>
-            <div 
-              className="p-5 space-y-3" 
-              style={{ maxHeight: '250px', overflowY: 'auto', cursor: 'text' }}
-              onClick={() => inputRef.current?.focus()}
-            >
-              {history.map((line, i) => (
-                <div key={i}>
-                  {(i < typed || i >= 3) ? (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="space-y-1"
-                    >
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
-                        <span style={{ color: 'var(--cyan)' }}>{line.prompt}</span>
-                        <span style={{ color: 'var(--text)' }}>{line.cmd}</span>
-                      </div>
-                      {line.out && (
-                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-dim)' }}>
-                          {line.out}
+            {/* Terminal window */}
+            <div style={{
+              background: 'var(--surface)',
+              border: '1px solid var(--border-hover)',
+              borderRadius: '10px',
+              overflow: 'hidden',
+              boxShadow: isDesktop ? 'var(--cyan-glow)' : 'none',
+            }}>
+              <div className="ide-titlebar">
+                <MacDots />
+                <span className="ide-filename">portfolio.sh — zsh</span>
+                <span style={{ marginLeft: 'auto', fontSize: 10, color: 'var(--text-muted)' }}>©2026</span>
+              </div>
+              <div
+                className="p-3 sm:p-5 space-y-3"
+                style={{ maxHeight: isMobile ? '200px' : '250px', overflowY: 'auto', cursor: 'text' }}
+                onClick={() => inputRef.current?.focus()}
+              >
+                {history.map((line, i) => (
+                  <div key={i}>
+                    {(i < typed || i >= 3) ? (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="space-y-1"
+                      >
+                        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem sm:0.8rem' }}>
+                          <span style={{ color: 'var(--cyan)' }}>{line.prompt}</span>
+                          <span style={{ color: 'var(--text)' }}>{line.cmd}</span>
                         </div>
-                      )}
-                    </motion.div>
-                  ) : null}
-                </div>
-              ))}
-              {typed < 3 && (
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
-                  <span style={{ color: 'var(--cyan)' }}>visitor@portfolio:~$</span>
-                  <span className="terminal-cursor" />
-                </div>
-              )}
-              {typed >= 3 && (
-                <div style={{ display: 'flex', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', position: 'relative' }}>
-                  <span style={{ color: 'var(--cyan)', whiteSpace: 'nowrap', marginRight: '6px' }}>visitor@portfolio:~$</span>
-                  
-                  {/* Custom Input Display */}
-                  <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text)', position: 'relative' }}>
-                    {!inputVal && (
-                      <span style={{ color: 'var(--text-muted)', opacity: 0.5, position: 'absolute', left: 0, pointerEvents: 'none', whiteSpace: 'nowrap' }}>
-                        Type 'help' to see available commands...
-                      </span>
-                    )}
-                    <span style={{ whiteSpace: 'pre' }}>{inputVal}</span>
-                    {/* Retro Block Cursor */}
-                    {isFocused && (
-                      <span style={{
-                        display: 'inline-block',
-                        width: '8px',
-                        height: '14px',
-                        backgroundColor: 'var(--cyan)',
-                        marginLeft: inputVal ? '2px' : '0px',
-                        animation: 'blink 1.2s step-end infinite'
-                      }}></span>
-                    )}
+                        {line.out && (
+                          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem sm:0.8rem', color: 'var(--text-dim)' }}>
+                            {line.out}
+                          </div>
+                        )}
+                      </motion.div>
+                    ) : null}
                   </div>
+                ))}
+                {typed < 3 && (
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
+                    <span style={{ color: 'var(--cyan)' }}>visitor:~$</span>
+                    <span className="terminal-cursor" />
+                  </div>
+                )}
+                {typed >= 3 && (
+                  <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', position: 'relative' }}>
+                    <span style={{ color: 'var(--cyan)', whiteSpace: 'nowrap', marginRight: '6px' }}>visitor:~$</span>
 
-                  {/* Hidden Real Input */}
-                  <input
-                    ref={inputRef}
-                    autoFocus
-                    type="text"
-                    value={inputVal}
-                    onChange={(e) => setInputVal(e.target.value)}
-                    onKeyDown={handleCommand}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      opacity: 0,
-                      cursor: 'text',
-                      width: '100%',
-                      height: '100%',
-                    }}
-                    spellCheck={false}
-                    autoComplete="off"
-                  />
-                </div>
-              )}
+                    {/* Custom Input Display */}
+                    <div style={{ display: 'flex', alignItems: 'center', color: 'var(--text)', position: 'relative' }}>
+                      {!inputVal && (
+                        <span style={{ color: 'var(--text-muted)', opacity: 0.5, position: 'absolute', left: 0, pointerEvents: 'none', whiteSpace: 'nowrap' }}>
+                          {isDesktop ? "Type 'help' to see commands..." : ">_"}
+                        </span>
+                      )}
+                      <span style={{ whiteSpace: 'pre' }}>{inputVal}</span>
+                      {/* Retro Block Cursor */}
+                      {isFocused && (
+                        <span style={{
+                          display: 'inline-block',
+                          width: '8px',
+                          height: '14px',
+                          backgroundColor: 'var(--cyan)',
+                          marginLeft: inputVal ? '2px' : '0px',
+                          animation: 'blink 1.2s step-end infinite'
+                        }}></span>
+                      )}
+                    </div>
+
+                    {/* Hidden Real Input */}
+                    <input
+                      ref={inputRef}
+                      autoFocus
+                      type="text"
+                      value={inputVal}
+                      onChange={(e) => setInputVal(e.target.value)}
+                      onKeyDown={handleCommand}
+                      onFocus={() => setIsFocused(true)}
+                      onBlur={() => setIsFocused(false)}
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        opacity: 0,
+                        cursor: 'text',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                      spellCheck={false}
+                      autoComplete="off"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
 
-          {/* CTA buttons */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-            <a href="/resume.pdf" download className="btn-term glow-text">[ ./download-resume ]</a>
-            <a href="#projects" className="btn-term">[ ./view-projects ]</a>
-            <a href={contactLinks.github} target="_blank" rel="noreferrer" className="btn-term">[ ./open-github ]</a>
-          </div>
-        </motion.div>
+            {/* CTA buttons */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+              <a href="/resume.pdf" download className="btn-term text-xs sm:text-sm glow-text">[ ./download-resume ]</a>
+              <a href="#projects" className="btn-term text-xs sm:text-sm">[ ./view-projects ]</a>
+              <a href={contactLinks.github} target="_blank" rel="noreferrer" className="btn-term text-xs sm:text-sm">[ ./open-github ]</a>
+            </div>
+          </motion.div>
 
-        <motion.div
-          className="hero-right-col"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'relative',
-          }}
-        >
-          {/* Outer glow halo */}
-          <div style={{
-            position: 'absolute',
-            inset: '10%',
-            background: 'radial-gradient(ellipse at center, rgba(0,212,170,0.08) 0%, transparent 70%)',
-            borderRadius: '50%',
-            pointerEvents: 'none',
-          }} />
-          <CoderScene3D />
-        </motion.div>
+          {/* ── RIGHT COLUMN (3D Scene - Desktop Only) ── */}
+          {isDesktop ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+              className="flex justify-center items-center relative order-last lg:order-none"
+            >
+              {/* Outer glow halo */}
+              <div style={{
+                position: 'absolute',
+                inset: '-10%',
+                background: 'radial-gradient(ellipse at center, rgba(0,212,170,0.1) 0%, transparent 70%)',
+                borderRadius: '50%',
+                pointerEvents: 'none',
+              }} />
+              <div className="w-full max-w-[320px] sm:max-w-[480px] lg:max-w-none">
+                <CoderScene3D />
+              </div>
+            </motion.div>
+          ) : (
+             <motion.div 
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               style={{ 
+                 display: 'flex', 
+                 justifyContent: 'center', 
+                 paddingTop: '20px',
+                 position: 'relative'
+               }}
+             >
+               {/* Mobile visual simplified: just a glow and a terminal icon */}
+               <div style={{
+                 position: 'absolute',
+                 inset: 0,
+                 background: 'radial-gradient(circle at center, rgba(0,240,255,0.05) 0%, transparent 70%)',
+                 pointerEvents: 'none'
+               }} />
+               <TerminalIcon className="size-32 text-[var(--border-hover)] opacity-20" />
+             </motion.div>
+          )}
+        </div>
       </div>
 
       {/* Scroll cue */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '56px', position: 'relative' }}>
+      <div className="hidden sm:flex justify-center mt-12 relative">
         <button
           type="button"
           onClick={onScrollDown}
@@ -292,22 +307,13 @@ export function HeroSection({ onScrollDown }: { onScrollDown: () => void }) {
         </button>
       </div>
 
-      {/* Responsive: stack on mobile */}
       <style>{`
-        .hero-right-col {
-          padding-left: 50px;
-        }
-        @media (max-width: 860px) {
+        @media (max-width: 1024px) {
           #hero {
-            padding: 100px 24px 40px !important;
+            justify-content: flex-start;
           }
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-            gap: 0 !important;
-            text-align: left;
-          }
-          .hero-right-col {
-            display: none !important;
+          .hero-container {
+            margin-top: 40px;
           }
         }
       `}</style>

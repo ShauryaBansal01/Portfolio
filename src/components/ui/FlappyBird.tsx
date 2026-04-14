@@ -98,7 +98,8 @@ export function FlappyBird() {
   }, [gameStatus]);
 
   return (
-    <div style={{ marginTop: '10px', marginBottom: '10px', padding: '12px', border: '1px dashed var(--border-hover)', borderRadius: '8px', display: 'inline-block' }}>
+    <div style={{ marginTop: '10px', marginBottom: '10px', width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <div style={{ padding: '12px', border: '1px dashed var(--border-hover)', borderRadius: '8px', display: 'inline-block', background: 'var(--surface)' }}>
       <div style={{ color: 'var(--cyan)', marginBottom: '8px', fontWeight: 'bold', display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
         <span>[ FLAPPY_BIRD.EXE ]</span>
         <span>SCORE: {score}</span>
@@ -180,6 +181,7 @@ export function FlappyBird() {
              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '8px' }}>PRESS SPACE TO REBOOT</span>
            </div>
          )}
+      </div>
       </div>
     </div>
   )
