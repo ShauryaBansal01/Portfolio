@@ -5,7 +5,7 @@ import { IdeWindow } from '../ui/IdeWindow'
 import { useDevice } from '../../hooks/useDevice'
 
 export function AboutSection() {
-  const { isDesktop, isMobile } = useDevice()
+  const { isDesktop } = useDevice()
 
   return (
     <section id="about" className="responsive-section max-w-7xl mx-auto">

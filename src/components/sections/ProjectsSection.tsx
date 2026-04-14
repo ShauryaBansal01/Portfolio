@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, FileCode2, ChevronRight } from 'lucide-react'
+import { ExternalLink, FileCode2 } from 'lucide-react'
 import { projects } from '../../data/portfolio'
 import { FadeUp, SectionLabel, Chip } from '../ui/Primitives'
 import { IdeWindow } from '../ui/IdeWindow'
 import { useDevice } from '../../hooks/useDevice'
 
 export function ProjectsSection() {
-  const { isDesktop, isMobile } = useDevice()
+  const { isDesktop } = useDevice()
   const [selected, setSelected] = useState('streamify')
   const project = projects.find((p) => p.id === selected) ?? projects[0]
 

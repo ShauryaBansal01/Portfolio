@@ -4,7 +4,7 @@ import { IdeWindow } from '../ui/IdeWindow'
 import { useDevice } from '../../hooks/useDevice'
 
 export function SkillsSection() {
-  const { isDesktop, isMobile } = useDevice()
+  const { isDesktop } = useDevice()
 
   return (
     <section id="skills" className="responsive-section" style={{ background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
